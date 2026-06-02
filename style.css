@@ -1427,3 +1427,8 @@ body {
   .nav-phone-link span { display: none; }
   .nav-cta { gap: 10px; }
 }
+
+/* ── Ticker: 2x speed on mobile ── */
+@media (max-width: 640px) {
+  .ticker-track { animation-duration: 20s; }
+}
