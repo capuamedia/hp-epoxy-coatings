@@ -1421,3 +1421,9 @@ body {
   .section { padding: 80px 0; }
   .hero { padding: 60px 0 80px; }
 }
+
+/* ── Nav: hide phone label on small screens, keep icon tap target ── */
+@media (max-width: 640px) {
+  .nav-phone-link span { display: none; }
+  .nav-cta { gap: 10px; }
+}
