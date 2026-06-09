@@ -240,7 +240,7 @@ body {
 }
 .nav-logo { display: flex; align-items: center; gap: 12px; }
 .nav-logo img {
-  height: 30px;
+  height: 38px;
   width: auto;
   display: block;
   filter: drop-shadow(0 4px 14px rgba(var(--accent-rgb), .35)) drop-shadow(0 0 1px rgba(255,255,255,.2));
@@ -1426,6 +1426,9 @@ body {
 @media (max-width: 640px) {
   .nav-phone-link span { display: none; }
   .nav-cta { gap: 10px; }
+  .nav-inner { height: 64px; }
+  .nav-logo img { height: 22px; }
+  .footer-brand img { height: 26px; }
 }
 
 /* ── Ticker: 2x speed on mobile ── */
