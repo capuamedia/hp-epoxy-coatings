@@ -574,10 +574,31 @@
   window.addEventListener('touchmove', function(e) { if (dragging && e.touches[0]) updatePos(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchend', function() { dragging = false; });
 
+  var ZAPIER_WEBHOOK = 'YOUR_ZAPIER_WEBHOOK_URL';
   document.getElementById('quote-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    document.getElementById('quote-form-wrap').style.display = 'none';
-    document.getElementById('quote-sent').style.display = 'block';
+    var form = e.target;
+    var btn = form.querySelector('.qf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    var data = {
+      name:         form.name.value,
+      phone:        form.phone.value,
+      email:        form.email.value,
+      service:      form.service.value,
+      location:     form.location.value,
+      details:      form.details.value,
+      submitted_at: new Date().toLocaleString('en-US', {timeZone:'America/Los_Angeles'})
+    };
+    fetch(ZAPIER_WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).finally(function() {
+      document.getElementById('quote-form-wrap').style.display = 'none';
+      document.getElementById('quote-sent').style.display = 'block';
+    });
   });
 
   var mainNav = document.getElementById('main-nav');
