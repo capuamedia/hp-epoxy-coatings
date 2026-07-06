@@ -576,7 +576,7 @@
   window.addEventListener('touchmove', function(e) { if (dragging && e.touches[0]) updatePos(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchend', function() { dragging = false; });
 
-  var ZAPIER_WEBHOOK = 'YOUR_ZAPIER_WEBHOOK_URL';
+  var ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/19258562/4uhibwc/';
   document.getElementById('quote-form').addEventListener('submit', function(e) {
     e.preventDefault();
     var form = e.target;
