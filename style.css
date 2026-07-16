@@ -1478,7 +1478,7 @@ body {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .ba-wrap { grid-template-columns: 1fr; }
   .ba-slider { height: 420px; }
-  .ba-thumbs { flex-direction: row; }
+  .ba-thumbs { flex-direction: row; height: 160px; }
   .test-grid { grid-template-columns: 1fr; }
   .cta-banner-inner { grid-template-columns: 1fr; }
   .cta-phone-block { text-align: left; }
@@ -1496,7 +1496,8 @@ body {
   .service-card.featured { grid-column: auto; }
   .stats-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .ba-thumbs { flex-direction: column; }
+  .ba-thumbs { flex-direction: column; height: auto; }
+  .ba-thumb { flex: none; height: 130px; }
   .qf-row { grid-template-columns: 1fr; }
   .quote-card { padding: 24px; }
   .section { padding: 80px 0; }
