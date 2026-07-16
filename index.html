@@ -317,7 +317,7 @@
         </div>
       </div>
       <div class="ba-thumbs">
-        <div class="ba-thumb">
+        <div class="ba-thumb" data-full="assets/project-newbury-park.jpg" data-caption="Flake &amp; Chip — Newbury Park · 2-Car">
           <div class="img" style="background-image:url('assets/project-newbury-park.jpg');background-size:cover;background-position:center;">
             <div class="img-overlay"></div>
           </div>
@@ -326,7 +326,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </div>
         </div>
-        <div class="ba-thumb">
+        <div class="ba-thumb" data-full="assets/project-thousand-oaks.jpg" data-caption="Flake &amp; Chip — Thousand Oaks · 2-Car">
           <div class="img" style="background-image:url('assets/project-thousand-oaks.jpg');background-size:cover;background-position:center;">
             <div class="img-overlay"></div>
           </div>
@@ -335,7 +335,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </div>
         </div>
-        <div class="ba-thumb">
+        <div class="ba-thumb" data-full="assets/project-camarillo.jpg" data-caption="Flake Granite — Camarillo · 3-Car Garage">
           <div class="img" style="background-image:url('assets/project-camarillo.jpg');background-size:cover;background-position:center;">
             <div class="img-overlay"></div>
           </div>
@@ -344,7 +344,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </div>
         </div>
-        <div class="ba-thumb">
+        <div class="ba-thumb" data-full="assets/project-recoat-after-2.jpg" data-caption="Solid &rarr; Flake Recoat — 2-Car Garage">
           <div class="img" style="background-image:url('assets/project-recoat-after-2.jpg');background-size:cover;background-position:center;">
             <div class="img-overlay"></div>
           </div>
@@ -566,6 +566,15 @@
   </div>
 </footer>
 
+<!-- ═══════════ GALLERY LIGHTBOX ═══════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-cap" id="lightbox-cap"></div>
+</div>
+
 <script>
   var slider = document.getElementById('ba-slider');
   var dragging = false;
@@ -582,6 +591,31 @@
   window.addEventListener('mouseup', function() { dragging = false; });
   window.addEventListener('touchmove', function(e) { if (dragging && e.touches[0]) updatePos(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchend', function() { dragging = false; });
+
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxCap = document.getElementById('lightbox-cap');
+
+  function openLightbox(src, caption) {
+    lightboxImg.src = src;
+    lightboxImg.alt = caption;
+    lightboxCap.textContent = caption;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ba-thumb').forEach(function(thumb) {
+    thumb.addEventListener('click', function() {
+      openLightbox(thumb.getAttribute('data-full'), thumb.getAttribute('data-caption'));
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+  window.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
 
   var ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/19258562/4uhibwc/';
   document.getElementById('quote-form').addEventListener('submit', function(e) {

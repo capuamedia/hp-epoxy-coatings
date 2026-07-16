@@ -996,6 +996,62 @@ body {
   text-transform: uppercase;
 }
 
+/* Gallery lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(5,6,8,.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-lg);
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lightbox-close:hover { background: rgba(255,255,255,.18); }
+.lightbox-cap {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+@media (max-width: 640px) {
+  .lightbox { padding: 40px 16px; }
+  .lightbox-close { top: 12px; right: 12px; }
+}
+
 /* Testimonials */
 .testimonials {
   background:
